@@ -865,9 +865,9 @@ public class InferenceVisitor<
         return inferenceRefinementVariable;
     }
 
-    protected Set<AnnotationMirror> filterThrowCatchBounds(
+    protected AnnotationMirrorSet filterThrowCatchBounds(
             Set<? extends AnnotationMirror> originals) {
-        Set<AnnotationMirror> throwBounds = new HashSet<>();
+        AnnotationMirrorSet throwBounds = new HashSet<>();
 
         for (AnnotationMirror throwBound : originals) {
             if (atypeFactory.areSameByClass(throwBound, VarAnnot.class)) {
@@ -892,7 +892,7 @@ public class InferenceVisitor<
         if (infer) {
             // TODO: We probably want to unify this code with BaseTypeVisitor
             AnnotatedTypeMirror throwType = atypeFactory.getAnnotatedType(node.getExpression());
-            Set<AnnotationMirror> throwBounds =
+            AnnotationMirrorSet throwBounds =
                     filterThrowCatchBounds(getThrowUpperBoundAnnotations());
 
             final AnnotationMirror varAnnot =
@@ -960,7 +960,7 @@ public class InferenceVisitor<
 
         if (infer) {
             // TODO: Unify with BaseTypeVisitor implementation
-            Set<AnnotationMirror> requiredAnnotations =
+            AnnotationMirrorSet requiredAnnotations =
                     filterThrowCatchBounds(getExceptionParameterLowerBoundAnnotations());
             AnnotatedTypeMirror exPar = atypeFactory.getAnnotatedType(node.getParameter());
 
