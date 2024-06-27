@@ -867,7 +867,7 @@ public class InferenceVisitor<
 
     protected AnnotationMirrorSet filterThrowCatchBounds(
             Set<? extends AnnotationMirror> originals) {
-        AnnotationMirrorSet throwBounds = new HashSet<>();
+        AnnotationMirrorSet throwBounds = new AnnotationMirrorSet();
 
         for (AnnotationMirror throwBound : originals) {
             if (atypeFactory.areSameByClass(throwBound, VarAnnot.class)) {

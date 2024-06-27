@@ -95,8 +95,8 @@ public class LatticeBuilder {
 
         // Calculate subtypes map and supertypes map
         for (AnnotationMirror i : allTypes) {
-            AnnotationMirrorSet subtypeOfi = new HashSet<AnnotationMirror>();
-            AnnotationMirrorSet supertypeOfi = new HashSet<AnnotationMirror>();
+            AnnotationMirrorSet subtypeOfi = new AnnotationMirrorSet();
+            AnnotationMirrorSet supertypeOfi = new AnnotationMirrorSet();
             for (AnnotationMirror j : allTypes) {
                 if (qualHierarchy.isSubtypeQualifiersOnly(j, i)) {
                     subtypeOfi.add(j);
@@ -111,7 +111,7 @@ public class LatticeBuilder {
 
         // Calculate incomparable types map
         for (AnnotationMirror i : allTypes) {
-            AnnotationMirrorSet incomparableOfi = new HashSet<AnnotationMirror>();
+            AnnotationMirrorSet incomparableOfi = new AnnotationMirrorSet();
             for (AnnotationMirror j : allTypes) {
                 if (!subType.get(i).contains(j) && !subType.get(j).contains(i)) {
                     incomparableOfi.add(j);
